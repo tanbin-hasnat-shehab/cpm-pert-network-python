@@ -1,3 +1,4 @@
+import streamlit as st
 import networkx as nx   
 # Sample graph
 import matplotlib.pyplot as plt
@@ -156,3 +157,5 @@ nx.draw(G, pos)
 #nx.draw_networkx_edge_labels(G,pos)
 #plt.show()
 plt.savefig('a.png')
+if st.button('run'):
+	st.image('a.png')

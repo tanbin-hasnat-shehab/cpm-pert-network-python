@@ -12,6 +12,6 @@ if st.button('ok'):
     f.close()
     f = open("/tmp/demofile.txt", "r")
     a=f.readlines()
-    st.write(a[0])
+    st.write(a[1])
     
     

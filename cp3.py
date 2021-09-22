@@ -2,7 +2,7 @@ from openpyxl import load_workbook
 import streamlit as st
 
 
-wb=load_workbook('/data/data.xlsx')
+wb=load_workbook('/src/data.xlsx')
 sheet=wb.active
 
 input_t=st.text_input('here')

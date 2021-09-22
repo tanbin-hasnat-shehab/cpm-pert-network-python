@@ -90,7 +90,7 @@ if st.button('ok'):
 
 
     
-    st.image('/a.png')
+    st.image(img)
 
     cl1,cl2,cl3,cl4,cl5,cl6,cl7,cl8=st.columns(8)
     with cl1:

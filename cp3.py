@@ -2,7 +2,7 @@ import streamlit as st
 from openpyxl import load_workbook
 
 wb=load_workbook('tmp/data.xlsx')
-sheet=sheet.active
+sheet=wb.active
 t1=st.text_input(f'{1}')
 t2=st.text_input(f'{2}')
 if st.button('ok'):

@@ -11,5 +11,7 @@ if st.button('ok'):
     f.writelines([t1,'\n',t2])
     f.close()
     f = open("/tmp/demofile.txt", "r")
-    st.write(f.read())
+    a=f.splitlines()
+    st.write(a[0])
+    
     

@@ -2,3 +2,5 @@ networkx==2.6.2
 streamlit==0.88.0
 pandas==1.1.4
 matplotlib==3.2.2
+calculation
+cpm

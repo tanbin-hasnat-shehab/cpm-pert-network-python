@@ -10,7 +10,7 @@ if st.button('add'):
 	
 	a=len(sheet['A'])
 	sheet.cell(row=a+1, column=1).value=input_t
-	wb.save('data.xlsx')
+	wb.save('data/data.xlsx')
 	
 if st.button('ok show'):
 	

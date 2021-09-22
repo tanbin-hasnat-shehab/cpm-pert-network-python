@@ -105,7 +105,7 @@ def graph(mytask,days,precedors,result_tasks,xx):
 	#plt.subplots(figsize=(20,20))
 	plt.savefig('a.png')
 	#plt.show()
-	z=('a.png')
+	z=('/a.png')
 	
 	return z
 

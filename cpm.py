@@ -22,7 +22,7 @@ def graph(mytask,days,precedors,result_tasks,xx):
 	for i in range(2000):
 		all_nodes.append((i))
 	c=1
-	aa=10
+	aa=1
 	def common_data(list1, list2):
 	    result = False
 	    for x in list1:
@@ -103,7 +103,7 @@ def graph(mytask,days,precedors,result_tasks,xx):
 
 
 	#plt.style.use('default')
-	plt.figure(1,figsize=(5,5))
+	#plt.figure(1,figsize=(5,5))
 	plt.savefig('/tmp/a.png')
 	#plt.show()
 	z=('/tmp/a.png')

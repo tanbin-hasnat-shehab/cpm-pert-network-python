@@ -62,8 +62,10 @@ if n:
 
 if st.button('ok'):
     
-        
-    f = open("/tmp/cpm.txt", "w")
+    try: 
+        f = open("/tmp/cpm.txt", "w")
+    except:
+        f = open("tmp/cpm.txt", "w")
     for i in range(n):
         a=f'{i}'
         b=task_names[f'task_no{i}']
@@ -81,7 +83,10 @@ if st.button('ok'):
         f.write(f'{a},{b},{c},{dep_str}\n')
         
     f.close()
-    mydic=calculation.show_results('/tmp/cpm.txt')
+    try:
+        mydic=calculation.show_results('/tmp/cpm.txt')
+    except:
+        mydic=calculation.show_results('tmp/cpm.txt')
     tasks=mydic
     #print(mydic)
     img=cpm.graph(names, duration_one_d, dep, mydic, text_on_graph)

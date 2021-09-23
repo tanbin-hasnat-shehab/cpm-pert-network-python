@@ -97,7 +97,7 @@ def graph(mytask,days,precedors,result_tasks,xx):
 
 	
 	#, arrowstyle='->', arrowsize=10
-	plt.figure(1,figsize=(7,7))
+	plt.figure(1,figsize=(10,10))
 	nx.draw(G, pos,node_size =200,with_labels = True)
 	nx.draw_networkx_edge_labels(G,pos,edge_labels=labels,font_size=xx)
 

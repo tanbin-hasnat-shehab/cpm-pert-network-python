@@ -19,10 +19,10 @@ def graph(mytask,days,precedors,result_tasks,xx):
 	letters = string.ascii_lowercase
 	G = nx.cycle_graph(800)
 	all_nodes=[]
-	for i in range(200000):
+	for i in range(2000):
 		all_nodes.append((i))
 	c=1
-	aa=50
+	aa=10
 	def common_data(list1, list2):
 	    result = False
 	    for x in list1:

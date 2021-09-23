@@ -17,7 +17,7 @@ def graph(mytask,days,precedors,result_tasks,xx):
 		frame=points(mytask[i], days[i], precedors[i],False)
 		task.append(frame)
 	letters = string.ascii_lowercase
-	G = nx.cycle_graph()
+	G = nx.cycle_graph(80)
 	all_nodes=[]
 	for i in range(200000):
 		all_nodes.append((i))

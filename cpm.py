@@ -104,9 +104,15 @@ def graph(mytask,days,precedors,result_tasks,xx):
 
 	#plt.style.use('default')
 	#plt.figure(1,figsize=(5,5))
-	plt.savefig('/tmp/a.png')
+	try:
+		plt.savefig('/tmp/a.png')
+		z=('/tmp/a.png')
+	except:
+		plt.savefig('tmp/a.png')
+		z=('tmp/a.png')
+
 	#plt.show()
-	z=('/tmp/a.png')
+	
 	
 	return z
 

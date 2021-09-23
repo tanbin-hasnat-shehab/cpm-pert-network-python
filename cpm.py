@@ -103,7 +103,7 @@ def graph(mytask,days,precedors,result_tasks,xx):
 
 
 	#plt.style.use('default')
-	plt.figure(figsize=(5,5))
+	plt.figure(0,figsize=(5,5))
 	plt.savefig('/tmp/a.png')
 	#plt.show()
 	z=('/tmp/a.png')

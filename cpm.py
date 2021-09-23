@@ -19,10 +19,10 @@ def graph(mytask,days,precedors,result_tasks,xx):
 	letters = string.ascii_lowercase
 	G = nx.DiGraph()
 	all_nodes=[]
-	for i in range(20000):
+	for i in range(200000):
 		all_nodes.append((i))
 	c=1
-	aa=random.randint(0,1000)
+	aa=50
 	def common_data(list1, list2):
 	    result = False
 	    for x in list1:
@@ -81,12 +81,12 @@ def graph(mytask,days,precedors,result_tasks,xx):
 		if (ax==cx) and (bx==dx):
 			dec=True
 			print(dec)
-			G.add_edge(10*task[i].left_node,10*task[i].right_node)		
+			G.add_edge(aa*task[i].left_node,aa*task[i].right_node)		
 		else:
 			dec=False
 			print(dec)
-			G.add_edge(10*task[i].left_node,10*task[i].right_node)
-		labels[(10*task[i].left_node,10*task[i].right_node)]=f'{ax},{bx}\n{task[i].name}\n{cx},{dx}'
+			G.add_edge(aa*task[i].left_node,aa*task[i].right_node)
+		labels[(aa*task[i].left_node,aa*task[i].right_node)]=f'{ax},{bx}\n{task[i].name}\n{cx},{dx}'
 
 	#edge_colors = ['r' if dec==True else 'b' for e in G.edges]
 	#edge_color=edge_colors

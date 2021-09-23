@@ -97,12 +97,13 @@ def graph(mytask,days,precedors,result_tasks,xx):
 
 	
 	#, arrowstyle='->', arrowsize=10
+	plt.figure(1,figsize=(5,5))
 	nx.draw(G, pos,node_size =200,with_labels = True)
 	nx.draw_networkx_edge_labels(G,pos,edge_labels=labels,font_size=xx)
 
 
 	#plt.style.use('default')
-	plt.figure(1,figsize=(5,5))
+	#plt.figure(1,figsize=(5,5))
 	plt.savefig('/tmp/a.png')
 	#plt.show()
 	z=('/tmp/a.png')

@@ -5,8 +5,10 @@
 
 A demo is shown below :
 
-import cpm                      #importing module 
+
 import matplotlib.pyplot as plt
+import cpm                      #importing module 
+
 
 
 

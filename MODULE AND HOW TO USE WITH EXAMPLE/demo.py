@@ -14,6 +14,7 @@ precedors=[
 			['c','d']	
 		]
 
-img=cpm.graph(tasks,durations,precedors,10)
+text_size_in_model=10
+img=cpm.graph(tasks,durations,precedors,text_size_in_model)
 
 plt.show()

@@ -7,7 +7,7 @@ n=st.slider('number of tasks', min_value=1, max_value=100, value=5, step=1)
 text_on_graph=st.slider('text_on_graph', min_value=1, max_value=20, value=9, step=1)
 myweight=st.slider('critical path line weight', min_value=1, max_value=5, value=3, step=1)
 f_size=st.slider('size of the model', min_value=3, max_value=50, value=7, step=1)
-c1, c2,c3 = st.beta_columns((1,1,5))
+c1, c2,c3 = st.columns((1,1,5))
 if n:
     with c1:
         st.subheader('Tasks')

@@ -91,7 +91,7 @@ def graph(mytask,days,precedors,result_tasks,xx,myweight,f_size):
 	colors = nx.get_edge_attributes(G,'color').values()
 	plt.figure(1,figsize=(f_size,f_size))
 	pos=nx.spring_layout(G)
-	nx.draw_networkx_edges(G, pos,width=list(weights),edge_color=colors,arrowstyle='->')
+	nx.draw_networkx_edges(G, pos,width=list(weights),edge_color=colors,arrowstyle='->',arrowsize=f_size)
 
 
 

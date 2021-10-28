@@ -5,7 +5,7 @@ import random
 import string
 
 
-def graph(mytask,days,precedors,result_tasks,xx):
+def graph(mytask,days,precedors,result_tasks,xx,myweight):
 	class points:
 		def __init__(self,name,duration,dependency,already):
 			self.name=name
@@ -81,17 +81,16 @@ def graph(mytask,days,precedors,result_tasks,xx):
 		if (ax==cx) and (bx==dx):
 			dec=True
 			print(dec)
-			G.add_edge(aa*task[i].left_node,aa*task[i].right_node)		
+			G.add_edge(aa*task[i].left_node,aa*task[i].right_node,color='r',weight=myweight)		
 		else:
 			dec=False
 			print(dec)
-			G.add_edge(aa*task[i].left_node,aa*task[i].right_node)
+			G.add_edge(aa*task[i].left_node,aa*task[i].right_node,weight=1)
 		labels[(aa*task[i].left_node,aa*task[i].right_node)]=f'{ax},{bx}\n{task[i].name}\n{cx},{dx}'
-
-	#edge_colors = ['r' if dec==True else 'b' for e in G.edges]
-	#edge_color=edge_colors
+	weights = nx.get_edge_attributes(G,'weight').values()
+	colors = nx.get_edge_attributes(G,'color').values()
 	pos=nx.spring_layout(G)
-	nx.draw_networkx_edges(G, pos,arrowsize=8)
+	nx.draw_networkx_edges(G, pos,width=list(weights),edge_color=colors,arrowstyle='->')
 
 
 

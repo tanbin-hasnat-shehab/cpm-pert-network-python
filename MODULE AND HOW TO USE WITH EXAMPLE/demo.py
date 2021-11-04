@@ -21,3 +21,5 @@ img=cpm.graph(activities,durations,predecessors,show_results=True,fig_size=20,te
 
 #showing figure
 plt.show()
+
+#set show_results = True   to save the results into a text file

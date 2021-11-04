@@ -4,8 +4,16 @@ import matplotlib
 import random
 import string
 
-def graph(mytask,days,precedors,fontSize):
-	print(f'the type of xx is {type(fontSize)}')
+def graph(activities,durations,predecessors,*args,**kwargs):
+	mytask=activities
+	days=durations
+	precedors=predecessors
+	fontSize=kwargs.get('text_size',10)
+	f_size=kwargs.get('fig_size',8)
+	l_width=kwargs.get('line_width',3)
+	show_my_results=kwargs.get('show_results',True)
+	
+	
 	names=[]
 	for i in range(len(mytask)):
 		names.append(mytask[i])
@@ -22,7 +30,7 @@ def graph(mytask,days,precedors,fontSize):
 				xx.append(str(names.index(precedors[i][j])))
 		dep_in_numbers.append(xx)
 	
-	print(f'thw dep in numb is {dep_in_numbers}')
+
 
 	try:
 		f = open("/cpm.txt", "w")
@@ -140,10 +148,10 @@ def graph(mytask,days,precedors,fontSize):
 	        dx=tasks[task]['LF']
 	        if ax==cx and bx==dx:
 	            tasks[task]['isCritical']=True
-	            print(f'1st  and {tasks[task]["isCritical"]}')
+	            
 	        else:
 	            tasks[task]['isCritical']=False
-	            print(f'2nd  and {tasks[task]["isCritical"]}')
+	            
 	        i+=1
 
 	    
@@ -163,7 +171,7 @@ def graph(mytask,days,precedors,fontSize):
 		frame=points(mytask[i], days[i], precedors[i],False)
 		task.append(frame)
 	letters = string.ascii_lowercase
-	#G = nx.cycle_graph(800)
+	G = nx.cycle_graph(800)
 	all_nodes=[]
 	for i in range(2000):
 		all_nodes.append((i))
@@ -226,49 +234,50 @@ def graph(mytask,days,precedors,fontSize):
 		
 		if (ax==cx) and (bx==dx):
 			dec=True
-			print(dec)
-			G.add_edge(aa*task[i].left_node,aa*task[i].right_node)		
+			
+			G.add_edge(aa*task[i].left_node,aa*task[i].right_node,color='r',weight=l_width)		
 		else:
 			dec=False
-			print(dec)
-			G.add_edge(aa*task[i].left_node,aa*task[i].right_node)
+		
+			G.add_edge(aa*task[i].left_node,aa*task[i].right_node,weight=1)
 		labels[(aa*task[i].left_node,aa*task[i].right_node)]=f'{ax},{bx}\n{task[i].name}\n{cx},{dx}'
-
-	#edge_colors = ['r' if dec==True else 'b' for e in G.edges]
-	#edge_color=edge_colors
+	weights = nx.get_edge_attributes(G,'weight').values()
+	colors = nx.get_edge_attributes(G,'color').values()
+	plt.figure(1,figsize=(f_size,f_size))
 	pos=nx.spring_layout(G)
-	nx.draw_networkx_edges(G, pos,arrowsize=8)
+	nx.draw_networkx_edges(G, pos,width=list(weights),edge_color=colors,arrowstyle='->',arrowsize=f_size+10)
 
 
 
 	
 	#, arrowstyle='->', arrowsize=10
 	
-	nx.draw(G, pos,node_size =200,with_labels = True)
+	nx.draw(G, pos,node_size =20*f_size,with_labels = True)
 	nx.draw_networkx_edge_labels(G,pos,edge_labels=labels,font_size=fontSize)
-	#font_size=xx)
+	
 
 
 	try:
-		img=plt.savefig('/a.png')
-	
-		z=('/tmp/a.png')
-	except:
-		img=plt.savefig('a.png')
 		
-		z=('tmp/a.png')
+		plt.savefig('/a.png')
+		z=('/a.png')
+	except:
+		
+		plt.savefig('a.png')
+		z=('a.png')
 
-	proj_com=0
-	critical_path=''
-	for task in result_tasks:
-		if result_tasks[task]['ES']==result_tasks[task]['LS'] and result_tasks[task]['EF']==result_tasks[task]['LF']:
-			proj_com=proj_com+int(result_tasks[task]['duration'])
-			critical_path=critical_path+' -----> '+result_tasks[task]['name']
+
+	def show_result_fn():
+		f = open("results.txt", "w")
+		f.write('Name\tduration\tES\tEF\tLS\tLF\tFloat\tisCritical ?\n')
+		for i in range(len(result_tasks)):
+			
+			
+			strs=f"{result_tasks[f'task{i}']['name']}\t{result_tasks[f'task{i}']['duration']}\t\t{result_tasks[f'task{i}']['ES']}\t{result_tasks[f'task{i}']['EF']}\t{result_tasks[f'task{i}']['LS']}\t{result_tasks[f'task{i}']['LF']}\t{result_tasks[f'task{i}']['float']}\t{result_tasks[f'task{i}']['isCritical']}"
+			f.write(strs+'\n')
+		f.close()
+	if show_my_results==True:
+		show_result_fn()
 	
-	print(result_tasks)
-
-	print(f'\n\n critical path is {critical_path}')
-	print(f'project completion time  is {proj_com}')
-
 	return z
 

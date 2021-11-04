@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 
 
 
-tasks=['a','b','c','d','e']
+activities=['a','b','c','d','e']
 durations=[2,3,1,5,3]
-precedors=[
+predecessors=[
 			['-'],
 			['-'],
 			['a'],
@@ -14,7 +14,10 @@ precedors=[
 			['c','d']	
 		]
 
-text_size_in_model=10
-img=cpm.graph(tasks,durations,precedors,text_size_in_model)
 
+img=cpm.graph(activities,durations,predecessors,show_results=True,fig_size=20,text_size=10,line_width=3)
+#show_results,fig_size,text_size,line_width  ----are optional parameters,more the number of activities ,greater the fig_size is...
+
+
+#showing figure
 plt.show()

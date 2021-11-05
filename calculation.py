@@ -91,16 +91,16 @@ def show_results(a):
         dx=tasks[task]['LF']
         if ax==cx and bx==dx:
             tasks[task]['isCritical']==1
-            print(f'1st  and {tasks[task]["isCritical"]}')
+            #print(f'1st  and {tasks[task]["isCritical"]}')
         else:
             tasks[task]['isCritical']==0
-            print(f'2nd  and {tasks[task]["isCritical"]}')
+            #print(f'2nd  and {tasks[task]["isCritical"]}')
         i+=1
 
         
     #print(tasks)
     #print(tasks[f'task{0}']['LF'])
-    print('\n\n\n')
+    #print('\n\n\n')
     #print(tasks)
     return tasks
              

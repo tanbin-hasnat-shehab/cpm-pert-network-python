@@ -98,12 +98,12 @@ def graph(mytask,days,precedors,result_tasks,xx,myweight,f_size):
 	
 	#, arrowstyle='->', arrowsize=10
 	
-	nx.draw(G, pos,node_size =20*f_size,with_labels = True)
+	nx.draw(G, pos,with_labels = True)
 	nx.draw_networkx_edge_labels(G,pos,edge_labels=labels,font_size=xx)
 	print(f'thisssssssssssssssssss isssssssssssssssss {G.size()}')
 
 
-	#plt.style.use('default')
+	#plt.style.use('default')  node_size =20*f_size
 	#plt.figure(1,figsize=(5,5))
 	try:
 		

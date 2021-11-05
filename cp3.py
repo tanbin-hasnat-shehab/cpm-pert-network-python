@@ -1,5 +1,6 @@
 import calculation
 import cpm 
+import cpm2
 import matplotlib.pyplot as plt
 import streamlit as st
 st.set_page_config(layout="wide")
@@ -91,7 +92,9 @@ if st.button('ok'):
         mydic=calculation.show_results('tmp/cpm.txt')
     tasks=mydic
     #print(mydic)
-    img=cpm.graph(names, duration_one_d, dep, mydic, text_on_graph,myweight,f_size)
+    #img=cpm2.graph(names, duration_one_d, dep, mydic, text_on_graph,myweight,f_size)
+    #print(f_size)
+    img=cpm2.graph(names, duration_one_d, dep,text_size=text_on_graph, fig_size=f_size,line_width=myweight,show_results=False)
 
 
 

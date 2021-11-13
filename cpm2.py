@@ -237,9 +237,8 @@ def trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results):
         labels[(aa*task[i].left_node,aa*task[i].right_node)]=f'{ax},{bx}\n{task[i].name}\n{cx},{dx}'
     weights = nx.get_edge_attributes(G,'weight').values()
     colors = nx.get_edge_attributes(G,'color').values()
-    print(f_size)
     plt.figure(figsize=(f_size,f_size))
-    pos=nx.spring_layout(G)
+    pos=nx.spring_layout(G,k=1)
     nx.draw_networkx_edges(G, pos,width=list(weights),edge_color=colors,arrowstyle='->',arrowsize=f_size+10)
 
 
@@ -247,7 +246,10 @@ def trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results):
     
     #, arrowstyle='->', arrowsize=10
     
-    nx.draw(G, pos,node_size =20*f_size,with_labels = True)
+    nx.draw(G, pos,with_labels = True)
+    #node_size =20*f_size
+
+
     nx.draw_networkx_edge_labels(G,pos,edge_labels=labels,font_size=fontSize)
     
     
@@ -283,6 +285,7 @@ def trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results):
 
     multipiller=100
     edge_space=1
+    #matched=True
     def check_crossings():
         #print(f'task 8 left={task[8].left_node} r8={task[8].right_node}')
         #print(len(task))
@@ -304,70 +307,50 @@ def trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results):
 
         for i in range(len(task)):
             #print(f'task {i} = x1 : {task[i].x1} y1:{task[i].y1} x2:{task[i].x2} y2:{task[i].y2}')
-            
-            mmm=(task[i].y1-task[i].y2)/(task[i].x1-task[i].x2)
-            ccc=-mmm*task[i].x1+task[i].y1
+            if task[i].x1==task[i].x2:
+                mmm=1
+                ccc=task[i].x1
+            else:
+                mmm=(task[i].y1-task[i].y2)/(task[i].x1-task[i].x2)
+                ccc=-mmm*task[i].x1+task[i].y1
             task[i].c=ccc
             task[i].m=mmm
-        for i in range(len(task)):
-            #print(f'task {i} x1={task[i].x1} y1={task[i].y1} x2={task[i].x2} y2={task[i].y2}: {task[i].m}x + {task[i].c}')
-            x_list=[]
-            y_list=[]
-            if task[i].x1==task[i].x2:
-                for j in range(task[i].y1+edge_space,task[i].y2-edge_space):
-                    x_list.append(task[i].x1)
-                    y_list.append(j)
-                task[i].x_list=x_list
-                task[i].y_list=y_list
-            else:
-                for k in range(task[i].x1+edge_space,task[i].x2-edge_space):
-                    
-                    #print(f'the test is for i = {i} x ={k} and y = {round(task[i].m*k+task[i].c)}')
-                    x_list.append(k)
-                    y_list.append(round(task[i].m*k+task[i].c))
-                task[i].x_list=x_list
-                task[i].y_list=y_list
-
+        m_c=0
         
-        for i in range(len(task)):
-            xy_list=[]
-            for j in range(len(task[i].x_list)):
-                xy_list.append((task[i].x_list[j],task[i].y_list[j]))
-            task[i].xy_list=xy_list
 
-            #print(f'the x list of {i} : {task[i].x_list}  and lenth is {len(task[i].x_list)}  m={task[i].m},c={task[i].c}')
-            #print(f'the y list of {i} : {task[i].y_list}  and lenth is {len(task[i].y_list)}')
-            #print('\n\n')
+        def checke_match(a,b,m_c):
+        
+            if a.m!=b.m:
+                sol_x=round((b.c-a.c)/(a.m-b.m))
+                spacer=1
+                print(f'this is {a.name} {(a.x1+spacer,a.x2-spacer)} and  {b.name} {(b.x1+spacer,b.x2-spacer)} solution is {sol_x}')
+
+                if (sol_x<=a.x2-spacer and sol_x>=a.x1+spacer) and (sol_x<=b.x2-spacer and sol_x>=b.x1+spacer):
+                    m_c+=1
+                    print(f'this is m_c ============================================================================= = {m_c}')
+            else:
+                pass
+            return m_c
+
         for i in range(len(task)):
-            pass
-            #print(f'task {i} xy is {task[i].xy_list}')
-        mega_list=[]
-        mega_list_all=[]
-        for i in range(len(task)):
-            for j in range(len(task[i].xy_list)):
-                if task[i].xy_list[j] not in mega_list:
-                    mega_list.append(task[i].xy_list[j])
-                mega_list_all.append(task[i].xy_list[j])
-        global matched
-        if len(mega_list)==len(mega_list_all):
-            #print('not matched')
-            matched=False
-            
-        else:
-            #print('matched')
+            mm_c=0
+            for j in range(len(task)):
+                if i==j:
+                    pass
+                else:
+                    mm_c=checke_match(task[i], task[j],m_c)
+                if mm_c==1:
+                    break
+            if mm_c==1:
+                break
+       
+        if mm_c==1:
             matched=True
+        else:
+            matched=False
+        return matched
 
-
-
-
-
-
-
-
-
-    check_crossings()
-
-
+    matched=check_crossings()
     return matched
 
 def graph(activities,durations,predecessors,*args,**kwargs):
@@ -375,20 +358,17 @@ def graph(activities,durations,predecessors,*args,**kwargs):
     days=durations
     precedors=predecessors
     fontSize=kwargs.get('text_size',10)
-    f_size=kwargs.get('fig_size',8)
+    f_size=kwargs.get('fig_size',12)
     l_width=kwargs.get('line_width',3)
     show_my_results=kwargs.get('show_results',True)
 
     while True:
+        print("trying")
         plt.clf()
         matched=trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results)
         if matched==False:
-            try:
-                plt.savefig('a.png')
-                z=('a.png')
-            except:
-                plt.savefig('/a.png')
-                z=('/a.png')
-
+            print(f'this is matched  {matched}')
+            plt.savefig('a.png')
+            z=('a.png')
             break
     return z

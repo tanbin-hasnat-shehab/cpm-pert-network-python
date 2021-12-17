@@ -22,7 +22,7 @@ predecessors=[
 
 
 
-#show_results,fig_size,text_size,line_width  ----are optional parameters,more the number of activities ,greater the fig_size is...
+#show_results(boolean),fig_size(int),text_size(int),line_width(int)  ----are optional parameters,more the number of activities ,greater the fig_size is...
 
 
 #showing figure

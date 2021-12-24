@@ -1,3 +1,4 @@
+
 import networkx as nx   
 import matplotlib.pyplot as plt
 import matplotlib
@@ -237,7 +238,7 @@ def trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results):
         labels[(aa*task[i].left_node,aa*task[i].right_node)]=f'{ax},{bx}\n{task[i].name}\n{cx},{dx}'
     weights = nx.get_edge_attributes(G,'weight').values()
     colors = nx.get_edge_attributes(G,'color').values()
-    plt.figure(1,figsize=(f_size,f_size))
+    plt.figure(figsize=(f_size,f_size))
     pos=nx.spring_layout(G,k=1)
     nx.draw_networkx_edges(G, pos,width=list(weights),edge_color=colors,arrowstyle='->',arrowsize=f_size+10)
 

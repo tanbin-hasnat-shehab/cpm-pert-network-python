@@ -220,6 +220,27 @@ def trial_graphs(mytask,days,precedors,fontSize,f_size,l_width,show_my_results):
     G = nx.DiGraph()
     ss=10
     labels={}
+    new_nodes=[]
+    new_nodes.append(task[0].left_node)
+    for i in range(len(task)):
+        if task[i].left_node not in new_nodes:
+            new_nodes.append(task[i].left_node)
+        if task[i].right_node not in new_nodes:
+            new_nodes.append(task[i].right_node)
+    
+    n_nodes=[]
+    for i in range(len(new_nodes)):
+        n_nodes.append(i)
+
+    for i in range(len(task)):
+        for j in range(len(new_nodes)):
+            if task[i].left_node==new_nodes[j]:
+                task[i].left_node=n_nodes[j]
+            if task[i].right_node==new_nodes[j]:
+                task[i].right_node=n_nodes[j]
+
+
+
     for i in range(len(task)):
         ax=int(result_tasks[f'task{i}']['ES'])
         bx=int(result_tasks[f'task{i}']['EF'])

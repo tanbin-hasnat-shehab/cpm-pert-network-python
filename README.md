@@ -1,4 +1,4 @@
-https://drive.google.com/drive/folders/1-4JKC1mBGtWVnwFPlIX5Fa3sMaDiYcR7
+
 
 
 
@@ -32,3 +32,12 @@ precedors=[
 img=cpm.graph(tasks,durations,precedors,10)     #returns the path of generated image and show critical path and entire project completion time in the console
 
 plt.show()                                      #showing image
+
+
+
+
+
+
+
+
+py : https://drive.google.com/drive/folders/1-4JKC1mBGtWVnwFPlIX5Fa3sMaDiYcR7
